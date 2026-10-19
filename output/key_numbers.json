@@ -15,6 +15,19 @@
     "lift": 9.7
   },
   "overall_fail_pct": 8.86,
+  "confidence": {
+    "stale_rate_ci95": [
+      21.2,
+      31.8
+    ],
+    "fresh_rate_ci95": [
+      1.8,
+      4.1
+    ],
+    "gap_pp": 23.4,
+    "permutation_p": 0.0,
+    "trials": 2000
+  },
   "policies": {
     "A 仅按滞后>20min 拦截": {
       "flagged": 264,

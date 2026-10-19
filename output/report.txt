@@ -46,6 +46,8 @@ False  740     20   2.7
 True   264     69  26.1
 
 >20 分钟的派单占全部派单 26.3%
+断点两侧差异置信度（Wilson 95% 区间 + 2000 次置换检验）：
+  {"stale_rate_ci95": [21.2, 31.8], "fresh_rate_ci95": [1.8, 4.1], "gap_pp": 23.4, "permutation_p": 0.0, "trials": 2000}
 
 各库区（缺货率 %）：
              n  rate  n_stale  rate_stale  n_fresh  rate_fresh

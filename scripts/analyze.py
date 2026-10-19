@@ -131,6 +131,33 @@ def charts(scored, out_dir):
     return tab.round(1)
 
 
+def confidence(scored):
+    """断点两侧差异的置信度：Wilson 区间 + 置换检验（无 scipy 依赖）。"""
+    def wilson(k, n, z=1.96):
+        p = k / n
+        d = 1 + z * z / n
+        c = (p + z * z / (2 * n)) / d
+        h = z * (p * (1 - p) / n + z * z / (4 * n * n)) ** 0.5 / d
+        return round(max(c - h, 0) * 100, 1), round(min(c + h, 1) * 100, 1)
+
+    hi = scored.loc[scored["stale"], "fail"]
+    lo = scored.loc[~scored["stale"], "fail"]
+    obs = hi.mean() - lo.mean()
+    pool = np.concatenate([hi.to_numpy(), lo.to_numpy()])
+    rng = np.random.default_rng(42)
+    n_hi = len(hi)
+    null = np.array([(lambda p: p[:n_hi].mean() - p[n_hi:].mean())(rng.permutation(pool))
+                     for _ in range(2000)])
+    p_value = float((np.abs(null) >= abs(obs)).mean())
+    return {
+        "stale_rate_ci95": wilson(int(hi.sum()), len(hi)),
+        "fresh_rate_ci95": wilson(int(lo.sum()), len(lo)),
+        "gap_pp": round(obs * 100, 1),
+        "permutation_p": round(p_value, 5),
+        "trials": len(null),
+    }
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--csv", default="data/picks.csv")
@@ -165,6 +192,9 @@ def main():
     print(scored.groupby("stale").agg(n=("fail", "size"), fails=("fail", "sum"), rate=("fail", "mean"))
           .assign(rate=lambda t: (t.rate * 100).round(1)).to_string())
     print(f"\n>20 分钟的派单占全部派单 {scored.stale.mean()*100:.1f}%")
+    conf = confidence(scored)
+    print("断点两侧差异置信度（Wilson 95% 区间 + 2000 次置换检验）：")
+    print("  " + json.dumps(conf, ensure_ascii=False))
     zone_tab = charts(scored, out_dir)
     print("\n各库区（缺货率 %）：")
     print(zone_tab.to_string())
@@ -222,7 +252,7 @@ def main():
 
     with open(os.path.join(out_dir, "key_numbers.json"), "w", encoding="utf-8") as fh:
         json.dump({"meta": meta, "breakpoint": bp,
-                   "overall_fail_pct": round(scored.fail.mean() * 100, 2),
+                   "overall_fail_pct": round(scored.fail.mean() * 100, 2), "confidence": conf,
                    "policies": {**{k: evaluate(scored, v) for k, v in policies.items()}, "D": d_row}}, fh, ensure_ascii=False, indent=2)
     print(f"\n图表与关键数字已写入 {out_dir}/")
 
