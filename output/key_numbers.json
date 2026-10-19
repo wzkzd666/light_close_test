@@ -68,19 +68,45 @@
       "saved_hours": 13.8,
       "saved_pct": 10.4
     },
+    "F 分型拦截：四区按滞后>20min + E区按账面<=2": {
+      "flagged": 232,
+      "caught": 74,
+      "false_flags": 158,
+      "missed": 15,
+      "recall_pct": 83.1,
+      "precision_pct": 31.9,
+      "baseline_min": 8010,
+      "policy_min": 5990,
+      "saved_min": 2020,
+      "saved_hours": 33.7,
+      "saved_pct": 25.2
+    },
+    "G 分型拦截：四区按滞后>20min + E区按账面<=3": {
+      "flagged": 241,
+      "caught": 78,
+      "false_flags": 163,
+      "missed": 11,
+      "recall_pct": 87.6,
+      "precision_pct": 32.4,
+      "baseline_min": 8010,
+      "policy_min": 5810,
+      "saved_min": 2200,
+      "saved_hours": 36.7,
+      "saved_pct": 27.5
+    },
     "D": {
       "policy": "D 治本：刷新 >20min 账面（反事实）",
       "flagged": 0,
-      "caught": 61.9,
+      "caught": 63.7,
       "false_flags": 0,
-      "missed": 27,
-      "recall_pct": 69.5,
+      "missed": 25,
+      "recall_pct": 71.6,
       "precision_pct": 100.0,
       "baseline_min": 8010,
-      "policy_min": 2442,
-      "saved_min": 5568,
-      "saved_hours": 92.8,
-      "saved_pct": 69.5
+      "policy_min": 2277,
+      "saved_min": 5733,
+      "saved_hours": 95.5,
+      "saved_pct": 71.6
     }
   }
 }

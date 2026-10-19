@@ -128,6 +128,22 @@ def charts(scored, out_dir):
     ax.legend()
     fig.savefig(os.path.join(out_dir, "zone_stockout.svg"))
     plt.close(fig)
+
+    s = scored.copy()
+    s["is_e"] = s.zone_code == "高架E区"
+    bins = pd.cut(s.reported_stock, [-1, 2, 5, 10, 20, 30], labels=["0-2", "3-5", "6-10", "11-20", "21-30"])
+    m = s.groupby([bins, "is_e"], observed=True)["fail"].mean().unstack() * 100
+    x = np.arange(len(m))
+    fig, ax = plt.subplots(figsize=(8, 4.2))
+    ax.bar(x - 0.2, m[False], 0.4, label="其他四个库区")
+    ax.bar(x + 0.2, m[True], 0.4, label="高架E区")
+    ax.set_xticks(x, m.index)
+    ax.set_xlabel("账面剩余量 reported_stock")
+    ax.set_ylabel("到位缺货率 (%)")
+    ax.set_title("两套机制：E区看账面数量，其余四区看账面时间戳")
+    ax.legend()
+    fig.savefig(os.path.join(out_dir, "two_mechanisms.svg"))
+    plt.close(fig)
     return tab.round(1)
 
 
@@ -203,12 +219,41 @@ def main():
           .assign(超20min占比=lambda t: (t.超20min占比 * 100).round(1)).sort_values("超20min占比", ascending=False).to_string())
 
     print("\n" + "=" * 72)
+    print("2b. 第二根因排查：高架E区为什么反向")
+    print("=" * 72)
+    scored["is_e"] = scored.zone_code == "高架E区"
+    stock_bin = pd.cut(scored.reported_stock, [-1, 2, 5, 10, 20, 30],
+                       labels=["0-2", "3-5", "6-10", "11-20", "21-30"])
+    two = scored.groupby([stock_bin, "is_e"], observed=True)["fail"].agg(n="size", rate="mean").reset_index()
+    show = two.pivot(index="reported_stock", columns="is_e", values=["n", "rate"])
+    show[("rate", False)] = (show[("rate", False)] * 100).round(1)
+    show[("rate", True)] = (show[("rate", True)] * 100).round(1)
+    show.columns = [f"{a}_{'高架E区' if b else '其他四区'}" for a, b in show.columns]
+    print("账面剩余量 vs 缺货率（%）：")
+    print(show.to_string())
+    e = scored[scored.is_e]
+    o = scored[~scored.is_e]
+    print("\nE区 低账面阈值扫描：")
+    for k in (0, 1, 2, 3, 5, 10):
+        hi, lo = e[e.reported_stock <= k], e[e.reported_stock > k]
+        print(f"  stock<={k:2d}: n={len(hi):3d} 缺货率={hi.fail.mean()*100:5.1f}% | 其余 n={len(lo):3d} {lo.fail.mean()*100:4.1f}%")
+    print(f"\n其他四区同口径 stock<=2: n={int((o.reported_stock<=2).sum())} 缺货率={o.loc[o.reported_stock<=2,'fail'].mean()*100:.1f}%"
+          f"（vs 其余 {o.loc[o.reported_stock>2,'fail'].mean()*100:.1f}%）→ 账面数量在四区确实无预警力")
+    print(f"E区失败任务 reported_stock 均值 {e.loc[e.fail==1,'reported_stock'].mean():.2f} vs 成功 {e.loc[e.fail==0,'reported_stock'].mean():.2f}")
+    print(f"E区失败任务滞后均值 {e.loc[e.fail==1,'lag_min'].mean():.1f}min vs 成功 {e.loc[e.fail==0,'lag_min'].mean():.1f}min（失败反而更新鲜）")
+
+    print("\n" + "=" * 72)
     print("3. 拦截策略成本模型（省 90 分钟/次真缺货，花 20 分钟/次误标）")
     print("=" * 72)
     policies = {
         "A 仅按滞后>20min 拦截": scored["stale"],
-        "B 滞后>20min 且 高架E区豁免": scored["stale"] & (scored.zone_code != "高架E区"),
-        "C 滞后>20min 或 (滞后>10min 且当日已拣>80)": scored["stale"] | ((scored.lag_min > 10) & (scored.daily_picks > 80)),
+        "B 滞后>20min 且 高架E区豁免": scored["stale"] & ~scored["is_e"],
+        "C 滞后>20min 或 (滞后>10min 且当日已拣>80)": (scored["stale"]
+                                                | ((scored.lag_min > 10) & (scored.daily_picks > 80))),
+        "F 分型拦截：四区按滞后>20min + E区按账面<=2": (scored["stale"] & ~scored["is_e"])
+                                                | (scored["is_e"] & (scored.reported_stock <= 2)),
+        "G 分型拦截：四区按滞后>20min + E区按账面<=3": (scored["stale"] & ~scored["is_e"])
+                                                | (scored["is_e"] & (scored.reported_stock <= 3)),
     }
     rows = []
     for name, flag in policies.items():
@@ -222,13 +267,14 @@ def main():
     print(table[["flagged", "caught", "false_flags", "missed", "recall_pct", "precision_pct", "saved_min", "saved_hours", "saved_pct"]].to_string())
     print(f"\n基线（不拦截）：{int(scored.fail.sum())} 次到位缺货 × 90 分钟 = {int(scored.fail.sum())*90} 分钟 = {int(scored.fail.sum())*90/60:.1f} 小时/周")
 
-    stale_g = scored[scored["stale"]]
-    fresh_rate = scored.loc[~scored["stale"], "fail"].mean()
+    stale_g = scored[scored["stale"] & ~scored["is_e"]]
+    fresh_rate = scored.loc[~scored["stale"] & ~scored["is_e"], "fail"].mean()
     avoided = stale_g["fail"].sum() - len(stale_g) * fresh_rate
     d_min = round(avoided * MINUTES_LOST_PER_STOCKOUT)
-    print(f"\nD 治本（反事实估算，不是拦截规则）：派单前把这 {len(stale_g)} 条 >{BREAKPOINT_MIN}min 的账面刷新到 {BREAKPOINT_MIN}min 以内，")
-    print(f"  假设其缺货率降到新鲜组水平 {fresh_rate*100:.1f}% → 可避免 {avoided:.1f} 次缺货，"
+    print(f"\nD 治本（反事实估算，不是拦截规则）：四个「账面过期型」库区里 {len(stale_g)} 条 >{BREAKPOINT_MIN}min 派单，派单前刷新账面，")
+    print(f"  假设其缺货率降到本组新鲜水平 {fresh_rate*100:.1f}% → 可避免 {avoided:.1f} 次缺货，"
           f"省 {d_min:.0f} 分钟 = {d_min/60:.1f} 小时/周，且零误标成本")
+    print(f"  高架E区不计入 D：它的缺货与滞后无关（失败组滞后 {e.loc[e.fail==1,'lag_min'].mean():.1f}min < 成功组 {e.loc[e.fail==0,'lag_min'].mean():.1f}min），修同步救不了它")
     d_row = {"policy": "D 治本：刷新 >20min 账面（反事实）", "flagged": 0, "caught": round(avoided, 1),
              "false_flags": 0, "missed": int(scored.fail.sum() - avoided),
              "recall_pct": round(avoided / scored.fail.sum() * 100, 1), "precision_pct": 100.0,

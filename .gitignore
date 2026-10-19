@@ -22,3 +22,4 @@ Thumbs.db
 
 # Qoder session artifacts
 .qoder-credits/
+!output/two_mechanisms.svg
