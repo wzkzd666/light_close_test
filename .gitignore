@@ -19,3 +19,6 @@ output/*
 Thumbs.db
 .idea/
 .vscode/
+
+# Qoder session artifacts
+.qoder-credits/
