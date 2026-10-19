@@ -108,7 +108,7 @@ def charts(scored, out_dir):
     ax.set_ylabel("到位缺货率 (%)")
     ax.set_title("同步滞后 vs 到位缺货率")
     ax.legend()
-    fig.savefig(os.path.join(out_dir, "lag_vs_stockout.png"))
+    fig.savefig(os.path.join(out_dir, "lag_vs_stockout.svg"))
     plt.close(fig)
 
     z = scored.groupby("zone_code")["fail"].agg(n="size", rate="mean")
@@ -126,7 +126,7 @@ def charts(scored, out_dir):
     ax.set_ylabel("到位缺货率 (%)")
     ax.set_title("各库区缺货率：账面新鲜度是主要分水岭")
     ax.legend()
-    fig.savefig(os.path.join(out_dir, "zone_stockout.png"))
+    fig.savefig(os.path.join(out_dir, "zone_stockout.svg"))
     plt.close(fig)
     return tab.round(1)
 

@@ -9,8 +9,8 @@ __pycache__/
 
 # Analysis output — keep the artifacts README cites
 output/*
-!output/lag_vs_stockout.png
-!output/zone_stockout.png
+!output/lag_vs_stockout.svg
+!output/zone_stockout.svg
 !output/key_numbers.json
 !output/report.txt
 

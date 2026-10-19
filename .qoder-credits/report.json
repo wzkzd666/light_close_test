@@ -1,0 +1,821 @@
+{
+  "schemaVersion": 3.2,
+  "generatedAt": "2026-10-19T10:12:35.658Z",
+  "source": "desktop-rich",
+  "usageSource": "transcript-ratio",
+  "availability": {
+    "credits": "measured",
+    "roundTrips": "measured",
+    "contextRatio": "measured",
+    "tokens": "derived",
+    "outputTokens": "unavailable",
+    "cachedTokens": "unavailable",
+    "categoryShare": "derived",
+    "toolShare": "derived",
+    "fileShare": "derived",
+    "systemPrompt": "derived",
+    "contextWindow": "measured",
+    "compactions": "measured",
+    "compactionCost": "measured",
+    "model": "measured",
+    "title": "measured",
+    "toolCalls": "measured",
+    "fileReads": "measured",
+    "userTurns": "measured",
+    "userContextLimit": "fallback"
+  },
+  "session": {
+    "id": "f539270a-b798-4f7e-8f0f-5ffa8ab93203",
+    "title": "该项目的远程地址：https://github.",
+    "titleSource": "first-user",
+    "model": "qfmodel",
+    "modelSource": "runtime-config",
+    "cwd": "C:\\Users\\Administrator\\Downloads\\关灯科技限时任务",
+    "turns": 1,
+    "roundTrips": 20,
+    "compactions": 0,
+    "startedAt": "2026-10-19T10:07:21.756Z",
+    "endedAt": "2026-10-19T10:12:35.367Z"
+  },
+  "context": {
+    "contextWindow": 1000000,
+    "contextWindowSource": "runtime-config",
+    "systemPromptTokens": 22065,
+    "netContextTokens": 43112,
+    "peakContextTokens": 43112,
+    "peakContextRatio": 0.043112,
+    "peakSessionTokens": 43112,
+    "peakSessionRatio": 0.043112,
+    "peakSessionNotable": false,
+    "peakAdvice": {
+      "level": "low",
+      "tone": "info",
+      "text": "低于盈亏线（39%）。此时压缩在 token 上是亏的：省下的还不够付摘要输出加压缩后重读，别压"
+    },
+    "userContextLimit": 200000,
+    "userContextLimitSource": "default",
+    "peakUserRatio": 0.21556,
+    "peakUserAdvice": {
+      "level": "low",
+      "tone": "info",
+      "text": "低于盈亏线（39%）。此时压缩在 token 上是亏的：省下的还不够付摘要输出加压缩后重读，别压"
+    },
+    "currentContextTokens": 43112,
+    "netUserRatio": 0.21556,
+    "netUserAdvice": {
+      "level": "low",
+      "tone": "info",
+      "text": "低于盈亏线（39%）。此时压缩在 token 上是亏的：省下的还不够付摘要输出加压缩后重读，别压"
+    },
+    "netWindowRatio": 0.043112,
+    "observedAutoCompactions": 0,
+    "observedAutoTriggerTokens": null,
+    "autoTriggerRatio": null,
+    "thresholdNotEnforced": true
+  },
+  "totals": {
+    "billedInputTokens": 729774,
+    "netContextTokens": 43112,
+    "peakContextTokens": 43112,
+    "amplification": 16.93,
+    "attributedTokens": 729774,
+    "coverage": 1,
+    "credits": 3.77,
+    "originalCredits": 3.77,
+    "outputTokens": 0,
+    "cachedTokens": 0,
+    "cachedTrips": 0,
+    "cachedShare": 0,
+    "toolCalls": 26,
+    "fileReads": 8
+  },
+  "creditsCoverage": {
+    "trips": 20,
+    "roundTrips": 20,
+    "tokens": 729774,
+    "tokenShare": 1,
+    "full": true
+  },
+  "compactionCost": {
+    "count": 0,
+    "items": [],
+    "totals": {
+      "preTokens": 0,
+      "postTokens": 0,
+      "savedTokens": 0,
+      "measured": 0
+    }
+  },
+  "proxy": {
+    "matched": 0,
+    "requests": 20,
+    "breakdown": {
+      "proxy": 0,
+      "transcriptTokens": 0,
+      "transcriptRatio": 20
+    },
+    "logPath": "C:\\Users\\Administrator\\.qoder-credits-proxy\\usage.jsonl",
+    "logExists": false,
+    "logRecords": 0,
+    "configured": false,
+    "enabled": true,
+    "port": 49787,
+    "lastRecordAt": null,
+    "dormant": false,
+    "status": null,
+    "statusSuperseded": false
+  },
+  "byCategory": [
+    {
+      "key": "tool_result",
+      "label": "工具返回",
+      "tokens": 69194,
+      "share": 0.09481603977111601
+    },
+    {
+      "key": "system",
+      "label": "系统提示词",
+      "tokens": 441300,
+      "share": 0.6047077588404082
+    },
+    {
+      "key": "assistant_thinking",
+      "label": "模型思考",
+      "tokens": 69117,
+      "share": 0.09471036148922506
+    },
+    {
+      "key": "assistant_tool_use",
+      "label": "工具调用",
+      "tokens": 32885,
+      "share": 0.045062486055321906
+    },
+    {
+      "key": "assistant_text",
+      "label": "模型回复",
+      "tokens": 1744,
+      "share": 0.0023891834389221257
+    },
+    {
+      "key": "user_input",
+      "label": "用户输入",
+      "tokens": 1650,
+      "share": 0.002260678518751011
+    },
+    {
+      "key": "attachment",
+      "label": "附件/技能",
+      "tokens": 113884,
+      "share": 0.15605349188625567
+    }
+  ],
+  "byCategoryDetail": [
+    {
+      "key": "tool_result",
+      "label": "工具返回",
+      "tokens": 69194,
+      "share": 0.09481603977111601,
+      "children": [
+        {
+          "tool": "Read",
+          "label": "C:/Users/Administrator/.qoder-cn/memory/reference-machine-github-network.md",
+          "kind": "read",
+          "tokens": 44608,
+          "share": 0.06112613386652667,
+          "catShare": 0.6446813641877884,
+          "trips": 17
+        },
+        {
+          "tool": "Bash",
+          "label": "（无路径）",
+          "kind": "shell",
+          "tokens": 21066,
+          "share": 0.028866224805287336,
+          "catShare": 0.304444531484017,
+          "trips": 217
+        },
+        {
+          "tool": "Write",
+          "label": "C:/Users/Administrator/AppData/Local/Temp/qoder_env_probe.py",
+          "kind": "write",
+          "tokens": 988,
+          "share": 0.001354520662664332,
+          "catShare": 0.014285775549517963,
+          "trips": 21
+        },
+        {
+          "tool": "Read",
+          "label": "C:/Users/Administrator/AppData/Local/Temp/qoder_cjk_probe.png",
+          "kind": "read",
+          "tokens": 779,
+          "share": 0.0010681071546701662,
+          "catShare": 0.011265047108575248,
+          "trips": 8
+        },
+        {
+          "tool": "Write",
+          "label": ".gitignore",
+          "kind": "write",
+          "tokens": 632,
+          "share": 0.0008662402495173226,
+          "catShare": 0.009136009599308397,
+          "trips": 12
+        },
+        {
+          "tool": "Write",
+          "label": "matplotlibrc",
+          "kind": "write",
+          "tokens": 632,
+          "share": 0.0008662402495173226,
+          "catShare": 0.009136009599308397,
+          "trips": 12
+        },
+        {
+          "tool": "Write",
+          "label": ".venv/Lib/site-packages/sitecustomize.py",
+          "kind": "write",
+          "tokens": 430,
+          "share": 0.0005893321094190429,
+          "catShare": 0.006215531790208477,
+          "trips": 7
+        },
+        {
+          "tool": "Edit",
+          "label": ".gitignore",
+          "kind": "write",
+          "tokens": 58,
+          "share": 0.00007924067351383735,
+          "catShare": 0.000835730681276319,
+          "trips": 1
+        }
+      ]
+    },
+    {
+      "key": "system",
+      "label": "系统提示词",
+      "tokens": 441300,
+      "share": 0.6047077588404082,
+      "children": []
+    },
+    {
+      "key": "assistant_thinking",
+      "label": "模型思考",
+      "tokens": 69117,
+      "share": 0.09471036148922506,
+      "children": []
+    },
+    {
+      "key": "assistant_tool_use",
+      "label": "工具调用",
+      "tokens": 32885,
+      "share": 0.045062486055321906,
+      "children": [
+        {
+          "tool": "Bash",
+          "label": "（无路径）",
+          "kind": "shell",
+          "tokens": 17608,
+          "share": 0.02412806174194136,
+          "catShare": 0.535435655110551,
+          "trips": 217
+        },
+        {
+          "tool": "Write",
+          "label": "C:/Users/Administrator/AppData/Local/Temp/qoder_env_probe.py",
+          "kind": "write",
+          "tokens": 11510,
+          "share": 0.015771866663402048,
+          "catShare": 0.3499999233073689,
+          "trips": 21
+        },
+        {
+          "tool": "Write",
+          "label": ".gitignore",
+          "kind": "write",
+          "tokens": 1086,
+          "share": 0.0014876734719971407,
+          "catShare": 0.03301356854059865,
+          "trips": 12
+        },
+        {
+          "tool": "Write",
+          "label": "matplotlibrc",
+          "kind": "write",
+          "tokens": 1058,
+          "share": 0.0014500108524529095,
+          "catShare": 0.032177781995267045,
+          "trips": 12
+        },
+        {
+          "tool": "Write",
+          "label": ".venv/Lib/site-packages/sitecustomize.py",
+          "kind": "write",
+          "tokens": 860,
+          "share": 0.0011786642188380857,
+          "catShare": 0.026156218220873873,
+          "trips": 7
+        },
+        {
+          "tool": "Read",
+          "label": "C:/Users/Administrator/.qoder-cn/memory/reference-machine-github-network.md",
+          "kind": "read",
+          "tokens": 461,
+          "share": 0.0006317946652870973,
+          "catShare": 0.014020412999661433,
+          "trips": 17
+        },
+        {
+          "tool": "Read",
+          "label": "C:/Users/Administrator/AppData/Local/Temp/qoder_cjk_probe.png",
+          "kind": "read",
+          "tokens": 195,
+          "share": 0.00026702678866754155,
+          "catShare": 0.005925700333970045,
+          "trips": 8
+        },
+        {
+          "tool": "Edit",
+          "label": ".gitignore",
+          "kind": "write",
+          "tokens": 108,
+          "share": 0.00014738765273573744,
+          "catShare": 0.0032707394917092215,
+          "trips": 1
+        }
+      ]
+    },
+    {
+      "key": "assistant_text",
+      "label": "模型回复",
+      "tokens": 1744,
+      "share": 0.0023891834389221257,
+      "children": []
+    },
+    {
+      "key": "user_input",
+      "label": "用户输入",
+      "tokens": 1650,
+      "share": 0.002260678518751011,
+      "children": []
+    },
+    {
+      "key": "attachment",
+      "label": "附件/技能",
+      "tokens": 113884,
+      "share": 0.15605349188625567,
+      "children": []
+    }
+  ],
+  "byTool": [
+    {
+      "tool": "Read",
+      "tokens": 46044,
+      "calls": 2,
+      "perCall": 23022,
+      "share": 0.06309306247515145
+    },
+    {
+      "tool": "Bash",
+      "tokens": 38674,
+      "calls": 18,
+      "perCall": 2149,
+      "share": 0.05299428654722873
+    },
+    {
+      "tool": "Write",
+      "tokens": 17197,
+      "calls": 5,
+      "perCall": 3439,
+      "share": 0.023564548477808183
+    },
+    {
+      "tool": "Edit",
+      "tokens": 165,
+      "calls": 1,
+      "perCall": 165,
+      "share": 0.00022662832624957479
+    }
+  ],
+  "byFile": [
+    {
+      "attr": "file:C:\\Users\\Administrator\\.qoder-cn\\memory\\reference-machine-github-network.md",
+      "label": "C:/Users/Administrator/.qoder-cn/memory/reference-machine-github-network.md",
+      "kind": "read",
+      "tool": "Read",
+      "selfTokens": 2346,
+      "reads": 1,
+      "trips": 34,
+      "billed": 45069,
+      "perRead": 45069,
+      "share": 0.06175792853181376
+    },
+    {
+      "attr": "file:C:\\Users\\Administrator\\AppData\\Local\\Temp\\qoder_env_probe.py",
+      "label": "C:/Users/Administrator/AppData/Local/Temp/qoder_env_probe.py",
+      "kind": "write",
+      "tool": "Write",
+      "selfTokens": 1036,
+      "reads": 2,
+      "trips": 42,
+      "billed": 12498,
+      "perRead": 6249,
+      "share": 0.017126387326066375
+    },
+    {
+      "attr": "file:C:\\Users\\Administrator\\Downloads\\关灯科技限时任务\\.gitignore",
+      "label": ".gitignore",
+      "kind": "write",
+      "tool": "Write",
+      "selfTokens": 268,
+      "reads": 2,
+      "trips": 26,
+      "billed": 1883,
+      "perRead": 942,
+      "share": 0.0025805420477640387
+    },
+    {
+      "attr": "file:C:\\Users\\Administrator\\Downloads\\关灯科技限时任务\\matplotlibrc",
+      "label": "matplotlibrc",
+      "kind": "write",
+      "tool": "Write",
+      "selfTokens": 123,
+      "reads": 1,
+      "trips": 24,
+      "billed": 1690,
+      "perRead": 1690,
+      "share": 0.0023162511019702322
+    },
+    {
+      "attr": "file:C:\\Users\\Administrator\\Downloads\\关灯科技限时任务\\.venv\\Lib\\site-packages\\sitecustomize.py",
+      "label": ".venv/Lib/site-packages/sitecustomize.py",
+      "kind": "write",
+      "tool": "Write",
+      "selfTokens": 159,
+      "reads": 1,
+      "trips": 14,
+      "billed": 1290,
+      "perRead": 1290,
+      "share": 0.0017679963282571287
+    },
+    {
+      "attr": "file:C:\\Users\\Administrator\\AppData\\Local\\Temp\\qoder_cjk_probe.png",
+      "label": "C:/Users/Administrator/AppData/Local/Temp/qoder_cjk_probe.png",
+      "kind": "read",
+      "tool": "Read",
+      "selfTokens": 105,
+      "reads": 1,
+      "trips": 16,
+      "billed": 974,
+      "perRead": 974,
+      "share": 0.0013351339433377077
+    }
+  ],
+  "byAttr": [
+    {
+      "attr": "system",
+      "tokens": 441300,
+      "share": 0.6047077588404082
+    },
+    {
+      "attr": "attachment",
+      "tokens": 113884,
+      "share": 0.15605349188625567
+    },
+    {
+      "attr": "assistant_thinking",
+      "tokens": 69117,
+      "share": 0.09471036148922506
+    },
+    {
+      "attr": "tool_result|Read",
+      "tokens": 45388,
+      "share": 0.062194241021196826
+    },
+    {
+      "attr": "tool_result|Bash",
+      "tokens": 21066,
+      "share": 0.028866224805287336
+    },
+    {
+      "attr": "tool_use|Bash",
+      "tokens": 17608,
+      "share": 0.02412806174194136
+    },
+    {
+      "attr": "tool_use|Write",
+      "tokens": 14514,
+      "share": 0.019888215206690173
+    },
+    {
+      "attr": "tool_result|Write",
+      "tokens": 2683,
+      "share": 0.003676333271118021
+    },
+    {
+      "attr": "assistant_text",
+      "tokens": 1744,
+      "share": 0.0023891834389221257
+    },
+    {
+      "attr": "user_input",
+      "tokens": 1650,
+      "share": 0.002260678518751011
+    },
+    {
+      "attr": "tool_use|Read",
+      "tokens": 656,
+      "share": 0.0008988214539546389
+    },
+    {
+      "attr": "tool_use|Edit",
+      "tokens": 108,
+      "share": 0.00014738765273573744
+    },
+    {
+      "attr": "tool_result|Edit",
+      "tokens": 58,
+      "share": 0.00007924067351383735
+    }
+  ],
+  "byRequest": [
+    {
+      "index": 1,
+      "time": "18:07",
+      "ratio": 0.027246,
+      "inputTokens": 27246,
+      "outputTokens": null,
+      "usageSource": "transcript-ratio",
+      "credits": 0.769,
+      "originalCredits": 0.769,
+      "afterCompact": false
+    },
+    {
+      "index": 2,
+      "time": "18:07",
+      "ratio": 0.027767,
+      "inputTokens": 27767,
+      "outputTokens": null,
+      "usageSource": "transcript-ratio",
+      "credits": 0.099,
+      "originalCredits": 0.099,
+      "afterCompact": false
+    },
+    {
+      "index": 3,
+      "time": "18:08",
+      "ratio": 0.028321,
+      "inputTokens": 28321,
+      "outputTokens": null,
+      "usageSource": "transcript-ratio",
+      "credits": 0.149,
+      "originalCredits": 0.149,
+      "afterCompact": false
+    },
+    {
+      "index": 4,
+      "time": "18:08",
+      "ratio": 0.03205,
+      "inputTokens": 32050,
+      "outputTokens": null,
+      "usageSource": "transcript-ratio",
+      "credits": 0.188,
+      "originalCredits": 0.188,
+      "afterCompact": false
+    },
+    {
+      "index": 5,
+      "time": "18:08",
+      "ratio": 0.033121,
+      "inputTokens": 33121,
+      "outputTokens": null,
+      "usageSource": "transcript-ratio",
+      "credits": 0.14,
+      "originalCredits": 0.14,
+      "afterCompact": false
+    },
+    {
+      "index": 6,
+      "time": "18:09",
+      "ratio": 0.034073,
+      "inputTokens": 34073,
+      "outputTokens": null,
+      "usageSource": "transcript-ratio",
+      "credits": 0.114,
+      "originalCredits": 0.114,
+      "afterCompact": false
+    },
+    {
+      "index": 7,
+      "time": "18:09",
+      "ratio": 0.034609,
+      "inputTokens": 34609,
+      "outputTokens": null,
+      "usageSource": "transcript-ratio",
+      "credits": 0.109,
+      "originalCredits": 0.109,
+      "afterCompact": false
+    },
+    {
+      "index": 8,
+      "time": "18:10",
+      "ratio": 0.034991,
+      "inputTokens": 34991,
+      "outputTokens": null,
+      "usageSource": "transcript-ratio",
+      "credits": 0.144,
+      "originalCredits": 0.144,
+      "afterCompact": false
+    },
+    {
+      "index": 9,
+      "time": "18:10",
+      "ratio": 0.036025,
+      "inputTokens": 36025,
+      "outputTokens": null,
+      "usageSource": "transcript-ratio",
+      "credits": 0.15,
+      "originalCredits": 0.15,
+      "afterCompact": false
+    },
+    {
+      "index": 10,
+      "time": "18:10",
+      "ratio": 0.036801,
+      "inputTokens": 36801,
+      "outputTokens": null,
+      "usageSource": "transcript-ratio",
+      "credits": 0.137,
+      "originalCredits": 0.137,
+      "afterCompact": false
+    },
+    {
+      "index": 11,
+      "time": "18:10",
+      "ratio": 0.037439,
+      "inputTokens": 37439,
+      "outputTokens": null,
+      "usageSource": "transcript-ratio",
+      "credits": 0.108,
+      "originalCredits": 0.108,
+      "afterCompact": false
+    },
+    {
+      "index": 12,
+      "time": "18:11",
+      "ratio": 0.037747,
+      "inputTokens": 37747,
+      "outputTokens": null,
+      "usageSource": "transcript-ratio",
+      "credits": 0.124,
+      "originalCredits": 0.124,
+      "afterCompact": false
+    },
+    {
+      "index": 13,
+      "time": "18:11",
+      "ratio": 0.039072,
+      "inputTokens": 39072,
+      "outputTokens": null,
+      "usageSource": "transcript-ratio",
+      "credits": 0.594,
+      "originalCredits": 0.594,
+      "afterCompact": false
+    },
+    {
+      "index": 14,
+      "time": "18:11",
+      "ratio": 0.040206,
+      "inputTokens": 40206,
+      "outputTokens": null,
+      "usageSource": "transcript-ratio",
+      "credits": 0.131,
+      "originalCredits": 0.131,
+      "afterCompact": false
+    },
+    {
+      "index": 15,
+      "time": "18:11",
+      "ratio": 0.040447,
+      "inputTokens": 40447,
+      "outputTokens": null,
+      "usageSource": "transcript-ratio",
+      "credits": 0.114,
+      "originalCredits": 0.114,
+      "afterCompact": false
+    },
+    {
+      "index": 16,
+      "time": "18:11",
+      "ratio": 0.040922,
+      "inputTokens": 40922,
+      "outputTokens": null,
+      "usageSource": "transcript-ratio",
+      "credits": 0.118,
+      "originalCredits": 0.118,
+      "afterCompact": false
+    },
+    {
+      "index": 17,
+      "time": "18:11",
+      "ratio": 0.041251,
+      "inputTokens": 41251,
+      "outputTokens": null,
+      "usageSource": "transcript-ratio",
+      "credits": 0.146,
+      "originalCredits": 0.146,
+      "afterCompact": false
+    },
+    {
+      "index": 18,
+      "time": "18:12",
+      "ratio": 0.042071,
+      "inputTokens": 42071,
+      "outputTokens": null,
+      "usageSource": "transcript-ratio",
+      "credits": 0.135,
+      "originalCredits": 0.135,
+      "afterCompact": false
+    },
+    {
+      "index": 19,
+      "time": "18:12",
+      "ratio": 0.042503,
+      "inputTokens": 42503,
+      "outputTokens": null,
+      "usageSource": "transcript-ratio",
+      "credits": 0.139,
+      "originalCredits": 0.139,
+      "afterCompact": false
+    },
+    {
+      "index": 20,
+      "time": "18:12",
+      "ratio": 0.043112,
+      "inputTokens": 43112,
+      "outputTokens": null,
+      "usageSource": "transcript-ratio",
+      "credits": 0.162,
+      "originalCredits": 0.162,
+      "afterCompact": false
+    }
+  ],
+  "identity": {
+    "sumAttributed": 729774,
+    "billedInputTokens": 729774,
+    "absDiff": 0,
+    "ok": true
+  },
+  "pluginVersion": "2.7.4",
+  "selfCmd": "\"C:\\Users\\Administrator\\.qoder-cn\\plugins\\cache\\qoder-marketplace\\qoder-credits-inspector\\2.7.4\\bin\\credits-inspector.cmd\" cli",
+  "linkHealth": {
+    "matched": 0,
+    "requests": 20,
+    "coverage": 0,
+    "usageSource": "transcript-ratio",
+    "breakdown": {
+      "proxy": 0,
+      "transcriptTokens": 0,
+      "transcriptRatio": 20
+    },
+    "logRecords": 0,
+    "lastRecordAt": null,
+    "recentRequests": 0,
+    "proxyErrors": null,
+    "clientAbort": null,
+    "clientAbortMaxMs": null,
+    "upstreamRejected": null,
+    "aborted": null,
+    "truncated": null,
+    "noUsage": null,
+    "slowestMs": null,
+    "supersededFailure": null
+  },
+  "subagents": {
+    "scanned": false,
+    "dir": null,
+    "probedPaths": [
+      "C:\\Users\\Administrator\\.qoder-cn\\projects\\C--Users-Administrator-Downloads---------\\f539270a-b798-4f7e-8f0f-5ffa8ab93203\\subagents",
+      "C:\\Users\\Administrator\\.qoder-cn\\projects\\f539270a-b798-4f7e-8f0f-5ffa8ab93203\\subagents"
+    ],
+    "reason": "no-dir",
+    "count": 0,
+    "items": [],
+    "totals": {
+      "roundTrips": 0,
+      "billedInputTokens": 0,
+      "credits": 0,
+      "originalCredits": 0
+    },
+    "combined": {
+      "roundTrips": 20,
+      "billedInputTokens": 729774,
+      "credits": 3.77,
+      "originalCredits": 3.77
+    }
+  },
+  "manual": null,
+  "artifacts": {
+    "report": "report.json",
+    "canvas": "该项目的远程地址：https___github__f539270a.canvas.tsx"
+  }
+}
