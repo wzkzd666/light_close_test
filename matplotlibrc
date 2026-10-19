@@ -1,0 +1,7 @@
+backend: Agg
+figure.dpi: 150
+savefig.dpi: 150
+savefig.bbox: tight
+font.sans-serif: Microsoft YaHei, SimHei, DengXian, DejaVu Sans
+font.family: sans-serif
+axes.unicode_minus: False

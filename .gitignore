@@ -1,0 +1,21 @@
+# Virtual environment
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Analysis output — keep the artifacts README cites
+output/*
+!output/lag_vs_stockout.png
+!output/zone_stockout.png
+!output/key_numbers.json
+!output/report.txt
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

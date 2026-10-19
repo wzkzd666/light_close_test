@@ -1,0 +1,73 @@
+{
+  "meta": {
+    "rows_raw": 1090,
+    "rows_dup": 52,
+    "rows": 1038,
+    "unscored": 34
+  },
+  "breakpoint": {
+    "threshold_min": 21,
+    "gap_pp": 23.6,
+    "n_stale": 262,
+    "rate_stale_pct": 26.3,
+    "n_fresh": 742,
+    "rate_fresh_pct": 2.7,
+    "lift": 9.7
+  },
+  "overall_fail_pct": 8.86,
+  "policies": {
+    "A 仅按滞后>20min 拦截": {
+      "flagged": 264,
+      "caught": 69,
+      "false_flags": 195,
+      "missed": 20,
+      "recall_pct": 77.5,
+      "precision_pct": 26.1,
+      "baseline_min": 8010,
+      "policy_min": 7080,
+      "saved_min": 930,
+      "saved_hours": 15.5,
+      "saved_pct": 11.6
+    },
+    "B 滞后>20min 且 高架E区豁免": {
+      "flagged": 215,
+      "caught": 67,
+      "false_flags": 148,
+      "missed": 22,
+      "recall_pct": 75.3,
+      "precision_pct": 31.2,
+      "baseline_min": 8010,
+      "policy_min": 6280,
+      "saved_min": 1730,
+      "saved_hours": 28.8,
+      "saved_pct": 21.6
+    },
+    "C 滞后>20min 或 (滞后>10min 且当日已拣>80)": {
+      "flagged": 269,
+      "caught": 69,
+      "false_flags": 200,
+      "missed": 20,
+      "recall_pct": 77.5,
+      "precision_pct": 25.7,
+      "baseline_min": 8010,
+      "policy_min": 7180,
+      "saved_min": 830,
+      "saved_hours": 13.8,
+      "saved_pct": 10.4
+    },
+    "D": {
+      "policy": "D 治本：刷新 >20min 账面（反事实）",
+      "flagged": 0,
+      "caught": 61.9,
+      "false_flags": 0,
+      "missed": 27,
+      "recall_pct": 69.5,
+      "precision_pct": 100.0,
+      "baseline_min": 8010,
+      "policy_min": 2442,
+      "saved_min": 5568,
+      "saved_hours": 92.8,
+      "saved_pct": 69.5
+    }
+  }
+}
